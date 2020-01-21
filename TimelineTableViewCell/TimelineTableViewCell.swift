@@ -46,8 +46,15 @@ open class TimelineTableViewCell: UITableViewCell {
             self.setNeedsDisplay()
         }
     }
+
+    open var bubbleWidth: CGFloat = 2.0 {
+        didSet {
+            self.setNeedsDisplay()
+        }
+    }
     
     open var bubbleColor = UIColor(red: 0.75, green: 0.75, blue: 0.75, alpha: 1.0)
+    open var bubbleBorder = UIColor.black
     open var bubbleEnabled = true
 
     fileprivate lazy var maxNumSubviews = Int(floor(stackView.frame.size.width / (stackView.frame.size.height + stackView.spacing))) - 1
@@ -78,6 +85,8 @@ open class TimelineTableViewCell: UITableViewCell {
         lineInfoLabelRightMargin.constant = timeline.leftMargin - textMargin
         lineInfoLabel.sizeToFit()
 
+        // "Align" description to top-left and set proper wrap
+        descriptionLabel.numberOfLines = 0
         descriptionLabel.sizeToFit()
 
         timelinePoint.position = CGPoint(x: timeline.leftMargin, y: titleLabel.frame.origin.y + titleLabel.intrinsicContentSize.height / 2)
@@ -126,6 +135,16 @@ open class TimelineTableViewCell: UITableViewCell {
             stackView.addArrangedSubview(spacerView)
         }
     }
+
+    // MARK: Accessory margin adjustment
+    // Moves it a bit more to the left
+    open override func layoutSubviews() {
+        super.layoutSubviews()
+
+        CGRect adjustedFrame = self.accessoryView.frame;
+        adjustedFrame.origin.x += 10.0f;
+        self.accessoryView.frame = adjustedFrame;
+    }
 }
 
 // MARK: - Fileprivate Methods
@@ -139,6 +158,7 @@ fileprivate extension TimelineTableViewCell {
             height: titleLabel.frame.size.height + padding * 2)
 
         let path = UIBezierPath(roundedRect: bubbleRect, cornerRadius: bubbleRadius)
+
         let startPoint = CGPoint(x: bubbleRect.origin.x, y: bubbleRect.origin.y + bubbleRect.height / 2 - 8)
         path.move(to: startPoint)
         path.addLine(to: startPoint)
@@ -148,6 +168,8 @@ fileprivate extension TimelineTableViewCell {
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = path.cgPath
         shapeLayer.fillColor = bubbleColor.cgColor
+        shapeLayer.strokeColor = bubbleBorderColor.cgColor
+        shapeLayer.borderWidth = bubbleWidth
         
         self.contentView.layer.insertSublayer(shapeLayer, below: titleLabel.layer)
     }
