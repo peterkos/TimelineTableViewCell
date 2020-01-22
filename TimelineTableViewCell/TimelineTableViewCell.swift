@@ -54,7 +54,7 @@ open class TimelineTableViewCell: UITableViewCell {
     }
     
     open var bubbleColor = UIColor(red: 0.75, green: 0.75, blue: 0.75, alpha: 1.0)
-    open var bubbleBorder = UIColor.black
+    open var bubbleBorderColor = UIColor.black
     open var bubbleEnabled = true
 
     fileprivate lazy var maxNumSubviews = Int(floor(stackView.frame.size.width / (stackView.frame.size.height + stackView.spacing))) - 1
@@ -141,9 +141,9 @@ open class TimelineTableViewCell: UITableViewCell {
     open override func layoutSubviews() {
         super.layoutSubviews()
 
-        CGRect adjustedFrame = self.accessoryView.frame;
-        adjustedFrame.origin.x += 10.0f;
-        self.accessoryView.frame = adjustedFrame;
+        var adjustedFrame = self.accessoryView!.frame
+        adjustedFrame.origin.x += 10.0
+        self.accessoryView!.frame = adjustedFrame
     }
 }
 
