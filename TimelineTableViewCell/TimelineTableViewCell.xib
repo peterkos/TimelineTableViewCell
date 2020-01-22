@@ -66,6 +66,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="descriptionLabel" destination="LWm-f0-Lj3" id="fpE-cB-Cup"/>
+                <outlet property="descriptionMargin" destination="1Is-h9-zc7" id="CxD-Mc-J1c"/>
                 <outlet property="illustrationImageView" destination="aFP-zW-cVP" id="9AD-3h-Weg"/>
                 <outlet property="illustrationSize" destination="PXT-6u-JPT" id="rJ5-Sp-UeA"/>
                 <outlet property="lineInfoLabel" destination="W66-Ck-wDF" id="WZr-av-HnT"/>
