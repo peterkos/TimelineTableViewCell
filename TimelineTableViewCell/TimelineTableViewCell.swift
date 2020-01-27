@@ -142,7 +142,7 @@ open class TimelineTableViewCell: UITableViewCell {
         super.layoutSubviews()
 
         var adjustedFrame = self.accessoryView!.frame
-        adjustedFrame.origin.x += 10.0
+        adjustedFrame.origin.x -= 15.0
         self.accessoryView!.frame = adjustedFrame
     }
 }
