@@ -157,18 +157,19 @@ fileprivate extension TimelineTableViewCell {
     func drawBubble() {
         let padding: CGFloat = 8
         let bubbleRect = CGRect(
-            x: titleLabelLeftMargin.constant - padding,
-            y: titleLabel.frame.minY - padding,
-            width: titleLabel.frame.size.width + padding * 2,
-            height: titleLabel.frame.size.height + padding * 2)
+            x: titleLabelLeftMargin.constant - (padding / 2),
+            y: titleLabel.frame.minY,
+            width: titleLabel.frame.size.width + padding,
+            height: titleLabel.frame.size.height)
 
         let path = UIBezierPath(roundedRect: bubbleRect, cornerRadius: bubbleRadius)
 
-        let startPoint = CGPoint(x: bubbleRect.origin.x, y: bubbleRect.origin.y + bubbleRect.height / 2 - 8)
-        path.move(to: startPoint)
-        path.addLine(to: startPoint)
-        path.addLine(to: CGPoint(x: bubbleRect.origin.x - 8, y: bubbleRect.origin.y + bubbleRect.height / 2))
-        path.addLine(to: CGPoint(x: bubbleRect.origin.x, y: bubbleRect.origin.y + bubbleRect.height / 2 + 8))
+        // Callout point, removed for now
+//        let startPoint = CGPoint(x: bubbleRect.origin.x, y: bubbleRect.origin.y + bubbleRect.height / 2 - 8)
+//        path.move(to: startPoint)
+//        path.addLine(to: startPoint)
+//        path.addLine(to: CGPoint(x: bubbleRect.origin.x - 8, y: bubbleRect.origin.y + bubbleRect.height / 2))
+//        path.addLine(to: CGPoint(x: bubbleRect.origin.x, y: bubbleRect.origin.y + bubbleRect.height / 2 + 8))
         
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = path.cgPath
