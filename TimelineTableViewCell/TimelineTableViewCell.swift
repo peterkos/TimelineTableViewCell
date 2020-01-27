@@ -141,6 +141,11 @@ open class TimelineTableViewCell: UITableViewCell {
     open override func layoutSubviews() {
         super.layoutSubviews()
 
+        // Only attempt to offset if set
+        guard self.accessoryView != nil else {
+            return
+        }
+
         var adjustedFrame = self.accessoryView!.frame
         adjustedFrame.origin.x -= 15.0
         self.accessoryView!.frame = adjustedFrame
