@@ -132,7 +132,7 @@ open class TimelineTableViewCell: UITableViewCell {
             let label = UILabel(frame: CGRect.zero)
             label.text = String(format: "+ %d", diffNumViews)
             label.font = UIFont.preferredFont(forTextStyle: .headline)
-            stackView.addArrangedSubview(label)
+//            stackView.addArrangedSubview(label)
         }
         else {
             let spacerView = UIView()
